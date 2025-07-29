@@ -1,14 +1,19 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const Card = ({ title }) => {
+  const [count, setcount] = useState(0)
   const [hasLiked, sethasLiked] = useState(false)
 
-  return (
-    <div className="card">
-      <h2>{title}</h2>
+  useEffect(()=> {
+    console.log(`${title} has been linked to ${hasLiked}`)
+  });
 
-      <button onClick={() => sethasLiked(true)}>
-        Like
+  return (
+    <div className="card" onClick={()=> setcount(count + 1)}>
+      <h2>{title} - {count}</h2>
+
+      <button onClick={() => sethasLiked(!hasLiked)}>
+        {hasLiked ? '❤️' : '🤍'}
       </button>
     </div>
   )
